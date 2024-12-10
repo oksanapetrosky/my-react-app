@@ -8,7 +8,7 @@ export default function App() {
 
   //3
   const handleOnSearchChange = (searchData) => {
-     console.log(searchData);
+     searchData
   }
 
   return (
