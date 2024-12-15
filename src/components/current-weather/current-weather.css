@@ -1,4 +1,4 @@
-.weather {
+/* .weather {
   margin: 20px auto 0 auto;
   width: 300px;
   border-radius: 6px;
@@ -6,7 +6,19 @@
   color: #fff;
   background-color: #333;
   padding: 0 20px 20px 20px;
-}
+} */
+.weather {
+  margin: 20px auto 0 auto;
+  width: 350px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 10px -2px 20px 2px rgb(0 0 0 / 30%);
+  color: #074799;
+  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Adds the blur effect */
+  padding: 0 20px 20px 20px;
+}  
+
 .top,
 .bottom {
   display: flex;
@@ -15,14 +27,14 @@
 }
 .city {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
   margin: 0;
   letter-spacing: 1px;
 }
 .weather-discription {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
   margin: 0;
 }
@@ -47,10 +59,10 @@
 .parameter-label {
   text-align: left;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
 }
 .parameter-value {
   text-align: right;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
 }
