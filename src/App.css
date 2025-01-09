@@ -17,3 +17,16 @@
   position: relative;
   z-index: 1;
 }
+.weather-layout {
+  display: flex;
+  justify-content: space-between; /* Space between components */
+  align-items: flex-start; /* Align items to the top */
+  margin: 20px;
+}
+.current-weather {
+  flex: 2; /* Take up 2 parts of the space */
+}
+.forecast {
+  flex: 1; /* Take up 1 part of the space */
+  margin-left: 20px; /* Add space between the two components */
+}
