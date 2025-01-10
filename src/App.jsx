@@ -16,7 +16,7 @@ import mistVideo from "./assets/videos/mist.mp4";
 import fogVideo from "./assets/videos/fog.mp4";
 import drizzleVideo from "./assets/videos/drizzle.mp4";
 import hazeVideo from "./assets/videos/haze.mp4";
-import smokeVideo from "./assets/videos/smoke.mp4";
+// import smokeVideo from "./assets/videos/smoke.mp4";
 import thunderstormVideo from "./assets/videos/thunderstorm.mp4";
 
 export default function App() {
@@ -73,9 +73,6 @@ export default function App() {
         break;
         case "haze":
           setBackgroundVideo(hazeVideo);
-          break;
-          case "smoke":
-          setBackgroundVideo(smokeVideo);
           break;
       default:
         setBackgroundVideo(clearSkyVideo);
