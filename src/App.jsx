@@ -12,16 +12,17 @@ import clearSkyVideo from "./assets/videos/clear-sky.mp4";
 import cloudyVideo from "./assets/videos/cloudy.mp4";
 import rainVideo from "./assets/videos/rain.mp4";
 import snowVideo from "./assets/videos/snow.mp4";
-import sunnyVideo from "./assets/videos/sunny.mp4";
 import mistVideo from "./assets/videos/mist.mp4";
 import fogVideo from "./assets/videos/fog.mp4";
 import drizzleVideo from "./assets/videos/drizzle.mp4";
+import hazeVideo from "./assets/videos/haze.mp4";
+import smokeVideo from "./assets/videos/smoke.mp4";
 import thunderstormVideo from "./assets/videos/thunderstorm.mp4";
 
 export default function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
-  const [backgroundVideo, setBackgroundVideo] = useState(clearSkyVideo); // Default background
+  const [backgroundVideo, setBackgroundVideo] = useState(clearSkyVideo);
 
   const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(" ");
@@ -37,16 +38,13 @@ export default function App() {
       .then(async (response) => {
         const weatherResponse = await response[0].json();
         const forecastResponse = await response[1].json();
-        // Update background based on weather
-        console.log("Weather Condition:", weatherResponse.weather[0].main);
         updateBackground(weatherResponse.weather[0].main);
         setCurrentWeather({ city: searchData.label, ...weatherResponse });
         setForecast({ city: searchData.label, ...forecastResponse });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
-  //Function to update background video
   const updateBackground = (weatherCondition) => {
     switch (weatherCondition.toLowerCase()) {
       case "clear":
@@ -64,9 +62,6 @@ export default function App() {
       case "thunderstorm":
         setBackgroundVideo(thunderstormVideo);
         break;
-      case "sunny":
-        setBackgroundVideo(sunnyVideo);
-        break;
       case "mist":
         setBackgroundVideo(mistVideo);
         break;
@@ -76,23 +71,37 @@ export default function App() {
       case "drizzle":
         setBackgroundVideo(drizzleVideo);
         break;
+        case "haze":
+          setBackgroundVideo(hazeVideo);
+          break;
+          case "smoke":
+          setBackgroundVideo(smokeVideo);
+          break;
       default:
-        setBackgroundVideo(clearSkyVideo); // Fallback to clear sky video
+        setBackgroundVideo(clearSkyVideo);
         break;
     }
   };
 
-  // Set default city weather on page load
   useEffect(() => {
     const defaultCity = {
       label: "Roscommon, US",
-      value: "44.4984 -84.5920", // Latitude and Longitude for New York
+      value: "44.4984 -84.5920",
     };
     handleOnSearchChange(defaultCity);
   }, []);
 
   return (
-    <div className="container">
+    <div>
+
+{/* Navigation Bar */}
+<div className="w-full p-4">
+        <nav className="border-b border-gray-200 p-4 flex flex-col md:flex-row md:items-center md:justify-between">
+          <h1 className="text-4xl font-semibold text-white mb-6 md:mb-0 ml-9 font-[montserrat]">Weather Application</h1>
+          <Search onSearchChange={handleOnSearchChange} />
+        </nav>
+      </div>
+
       <video
         className="background-video"
         autoPlay
@@ -102,29 +111,23 @@ export default function App() {
       >
         <source src={backgroundVideo} type="video/mp4" />
       </video>
-      <Search onSearchChange={handleOnSearchChange} />
-      <div className="container mx-auto p-4 flex flex-col lg:flex-row">
-  <div className="lg:justify-between gap-4">
-    {/* Forecast block */}
-    <div className="order-2 lg:order-1 flex-1">
-    {currentWeather && (
-              <div className="current-weather">
-                <CurrentWeather data={currentWeather} /> 
-
-          </div>  )}
-          {/* Current Weather block */}
-          <div className="order-1 lg:order-2 flex-1">
-            
-                {forecast && (
-              <div className="forecast">
-                <Forecast data={forecast} />
+     {/* <Search onSearchChange={handleOnSearchChange} /> */}
+      <main className="w-full h-screen flex flex-col items-center px-8 text-white">
+        <section className="w-full max-w-6xl flex flex-col lg:flex-row lg:justify-between gap-8 items-start">
+          {/* Current Weather Block */}
+          {currentWeather && (
+              <div className="mt-10 w-full">
+                <CurrentWeather data={currentWeather} />
               </div>
             )}
-              </div>
-         
-          </div>
-        </div>
-      </div>
+          {/* Forecast Block */}
+          {forecast && (
+                <div className="mt-6">
+                  <Forecast data={forecast} />
+                </div>
+              )}
+        </section>
+      </main>
     </div>
   );
 }
