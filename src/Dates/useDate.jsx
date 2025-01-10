@@ -12,10 +12,6 @@ export const useDate = () => {
   
       return () => clearInterval(timer);
     }, []);
-  
-    // const day = today.toLocaleDateString(local, { weekday: 'long' });
-    // const date = `${day}, ${today.getDate()}, ${today.toLocaleDateString(local, { month: 'long' })}`;
-    // const time = today.toLocaleDateString(local, { hour: 'numeric', hour12: true, minute: 'numeric' });
 
     const day = today.toLocaleDateString(local, { weekday: 'long' }); // e.g., Thursday
   const month = today.toLocaleDateString(local, { month: 'long' }); // e.g., January
