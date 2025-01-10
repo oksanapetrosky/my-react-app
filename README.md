@@ -65,13 +65,6 @@ OpenWeatherMap API: Used for fetching weather and forecast data.
 
 GeoDB Cities API: Used for city search functionality.
 
-Screenshots
-
-(Add screenshots of your app here. Example:)
-
-
-
-
 Future Enhancements
 
 Add support for hourly weather updates.
